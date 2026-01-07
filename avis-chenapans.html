@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Évaluez notre service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&family=Merriweather&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: #5b1f26;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+        /* Pannello centrale bianco */
+        .panel {
+            background-color: white;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0px 15px 60px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+            transition: transform 0.3s ease-out;
+        }
+
+        /* Logo */
+        #logo {
+            margin-bottom: 30px;
+            animation: logoFadeIn 1s ease-out; /* Logo animato */
+        }
+
+        #logo img {
+            width: 200px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        #logo img:hover {
+            transform: scale(1.1) rotate(10deg); /* Ruotando e ingrandendo il logo */
+        }
+
+        /* Animazione del logo */
+        @keyframes logoFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Titolo della pagina */
+        h1 {
+            font-size: 36px;
+            color: #2d2d2d;
+            margin-bottom: 40px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-family: 'Merriweather', serif;
+        }
+
+        /* Frase di invito */
+        p {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        /* Sezione per le stelle */
+        .stars {
+            font-size: 60px;
+            cursor: pointer;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stars span {
+            color: #aaa;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .stars span:hover,
+        .stars span.selected {
+            color: #f4c542; /* Oro sofisticato */
+            transform: scale(1.2) rotate(10deg); /* Effetto di ingrandimento morbido e rotazione */
+        }
+
+        /* Modulo di feedback (visibile solo per valutazioni basse) */
+        .feedback-form {
+            display: none;
+            margin-top: 40px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 12px;
+            box-sizing: border-box;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .feedback-form textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            color: #333;
+            resize: none;
+        }
+
+        /* Pulsante di invio */
+        .btn {
+          background: #2bb62b;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: #d4b638;
+            transform: translateY(-3px); /* Effetto di "galleggiamento" */
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Messaggio di ringraziamento */
+        .thank-you-message {
+            display: none;
+            font-size: 22px;
+            color: #f4c542;
+            margin-top: 30px;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        /* Animazione per il messaggio di ringraziamento */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Media Queries per responsive */
+        @media (max-width: 768px) {
+            .stars span {
+                font-size: 50px;
+            }
+
+            .feedback-form textarea {
+                font-size: 14px;
+            }
+
+            .btn {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="panel">
+        <!-- Logo -->
+        <div id="logo">
+            <img src="logo-chenapans.png" alt="Les Chenapans">
+        </div>
+
+        <!-- Titolo -->
+        <h1 id="title">Évaluez notre service</h1>
+
+        <!-- Frase di invito -->
+        <p id="invitation">Lasciaci un avviso! La tua opinione è importante per noi.</p>
+
+        <!-- Stelle per la valutazione -->
+        <div class="stars" id="stars">
+            <span id="star1">&#9733;</span>
+            <span id="star2">&#9733;</span>
+            <span id="star3">&#9733;</span>
+            <span id="star4">&#9733;</span>
+            <span id="star5">&#9733;</span>
+        </div>
+
+        <!-- Modulo di feedback -->
+        <div class="feedback-form" id="feedbackForm">
+            <textarea id="feedback" placeholder="Qu'est-ce qui ne va pas?" rows="4"></textarea><br>
+            <button class="btn" id="submitFeedback">Envoyer</button>
+        </div>
+
+        <!-- Messaggio di ringraziamento -->
+        <div class="thank-you-message" id="thankYouMessage">
+            <p>Merci pour votre retour!</p>
+        </div>
+    </div>
+
+    <script>
+        let stars = document.querySelectorAll('.stars span');
+        let feedbackForm = document.getElementById('feedbackForm');
+        let submitFeedback = document.getElementById('submitFeedback');
+        let thankYouMessage = document.getElementById('thankYouMessage');
+        let feedbackInput = document.getElementById('feedback');
+        let starRating = 0;
+
+        // Rilevamento della lingua del browser
+        document.addEventListener("DOMContentLoaded", function() {
+            const userLang = navigator.language || navigator.userLanguage; // Rileva la lingua del browser
+            if (userLang.startsWith('en')) {
+                // Cambia il contenuto per lingua inglese
+                document.getElementById('title').textContent = 'Rate our service';
+                document.getElementById('invitation').textContent = 'Leave us a review! Your feedback is important to us.';
+                document.getElementById('submitFeedback').textContent = 'Submit';
+                document.getElementById('feedback').setAttribute('placeholder', "What's wrong?");
+            } else if (userLang.startsWith('fr')) {
+                // Cambia il contenuto per lingua francese
+                document.getElementById('title').textContent = 'Évaluez notre service';
+                document.getElementById('invitation').textContent = 'Laissez-nous un avis! Votre opinion est importante pour nous.';
+                document.getElementById('submitFeedback').textContent = 'Envoyer';
+                document.getElementById('feedback').setAttribute('placeholder', "Qu'est-ce qui ne va pas?");
+            }
+        });
+
+        // Gestione dell'evento di click sulle stelle
+        stars.forEach((star, index) => {
+            star.addEventListener('mouseover', () => {
+                stars.forEach((s, i) => {
+                    s.classList.remove('selected');
+                    if (i <= index) s.classList.add('selected');
+                });
+            });
+
+            star.addEventListener('click', () => {
+                starRating = index + 1;
+
+                // Mostra il modulo di feedback per valutazioni basse
+                if (starRating <= 3) {
+                    feedbackForm.style.display = 'block';
+                    feedbackForm.style.opacity = 1;
+                } else {
+                    // Reindirizza alla pagina di Google Reviews per valutazioni alte
+                    const googleReviewURL = "https://g.page/r/CeKaVCQqeuzPEAE/review";
+                    const reviewMessage = "Je suis très satisfait du service !";
+                    const encodedMessage = encodeURIComponent(reviewMessage);
+                    window.location.href = `${googleReviewURL}?text=${encodedMessage}`; // Reindirizza con il messaggio precompilato
+                    setTimeout(() => { window.close(); }, 15000); // Chiudi la pagina dopo 15 secondi
+                }
+            });
+        });
+
+        // Gestione invio del feedback
+        submitFeedback.addEventListener('click', () => {
+            if (feedbackInput.value) {
+                thankYouMessage.style.display = 'block';
+                setTimeout(() => { window.close(); }, 20000); // Chiudi la pagina dopo 20 secondi
+            }
+        });
+    </script>
+
+</body>
+</html>
+
